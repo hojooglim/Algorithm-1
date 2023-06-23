@@ -18,33 +18,36 @@ public class Main {
         ArrayList<Double> arrayList = new ArrayList<>();
         for (int i = 1; i <= N ; i++) {
             for (int j = 0; j < stage.length ; j++) {
-                if(i <= stage[j]){ //스테이지에 도착한 사람
-                    a++; // 도착한 사람;
-                    if (i == stage[j]){ //도착햇지만 클리어하지 못한 사람
-                        b++;
+                if(i <= stage[j]){
+                    a++; // 스테이지에 도착한 사람
+                    if (i == stage[j]){
+                        b++; // 도착햇지만 클리어하지 못한 사람
                     }
                 }
             }
-            c=(b/a);
+            //조건 3 도착했지만 클리어하지 못한 사람이 있을 때 실패율은 0이다
+            if (b!=0){
+                c=(b/a);
+            } else {
+                c=0.0;
+            }
+
             hashMap.put(i,c);
             arrayList.add(c);
             a=0;
             b=0;
         }
-        //정렬이 어렵네..
-        //valve를 통해서 key값 만 뽑아내면 간단한데 골치 아푸게하네~
-        System.out.println(arrayList);
-//        Collections.reverse(arrayList);
-//        System.out.println(arrayList);// ? 0이 맨앞으로 감
+        // 정렬이 어렵네..
+        // valve를 통해서 key값 만 뽑아내면 간단한데 골치 아푸게하네~
+        // Collections.reverse(arrayList);
+        // System.out.println(arrayList);//콜렉션 내림차순 ? 0이 맨앞으로 감
 
-        // arrayList.sort(Comparator.reverseOrder());
-        Collections.sort(arrayList, Collections.reverseOrder());
+        arrayList.sort(Comparator.reverseOrder());
+        //Collections.sort(arrayList, Collections.reverseOrder());
         //일단 내림차순 방법 2개
 
-        System.out.println(arrayList);
-        System.out.println(hashMap);
-
         ArrayList<Integer> answer =new ArrayList<>();
+
         for (int i = 0; i <arrayList.size() ; i++) {
             for (Integer o : hashMap.keySet()) {
                 if (hashMap.get(o).equals(arrayList.get(i))) {
@@ -54,8 +57,7 @@ public class Main {
                 }
             }
         }
-        System.out.println(answer);
-        //?정답률 70
 
+        System.out.println(answer);
     }
 }
