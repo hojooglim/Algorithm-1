@@ -1,22 +1,24 @@
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        int[] numbers = {5,0,2,7};
-
-        //중복x
-        Set<Integer> hashSet = new HashSet<>();
-        for (int i = 0; i < numbers.length ; i++) {
-            for (int j = 1+i; j < numbers.length; j++) {
-                int a = numbers[i]+numbers[j];
-                hashSet.add(a);
+        int n =3;
+        String answer = "";
+        for (int i = 0; i <n ; i++) {
+            if(i%2 == 0){
+                answer += "수";
+            }else if (i%2 == 1){
+                answer += "박";
             }
         }
+        System.out.println(answer);
 
-        Integer[] answer = hashSet.toArray(new Integer[0]);
-        Arrays.sort(answer);
+
+
+
 
     }
 }
